@@ -86,7 +86,7 @@ async function startServer() {
       }
     });
 
-app.listen(5000, '0.0.0.0', () => console.log("Server running on port 5000"));
+app.listen(5000, '54.174.227.60', () => console.log("Server running on port 5000"));
   } catch (err) {
     console.error('❌ MongoDB connection failed:', err);
     process.exit(1);
