@@ -75,7 +75,7 @@ async function startServer() {
         res.status(500).json({ message: 'Failed to fetch products' });
       }
     });
-
+    
     app.post('/api/products', async (req, res) => {
       try {
         const result = await productCollection.insertOne(req.body);
@@ -86,7 +86,7 @@ async function startServer() {
       }
     });
 
-app.listen(5000, 'localhost', () => console.log("✅ Connected to MongoDB and Server running locally on http://0.0.0.0:5000"));
+app.listen(5000, '3.90.159.31', () => console.log("✅ Connected to MongoDB and Server running locally on http://0.0.0.0:5000"));
   } catch (err) {
     console.error('❌ MongoDB connection failed:', err);
     process.exit(1);
