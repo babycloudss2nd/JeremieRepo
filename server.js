@@ -22,7 +22,6 @@ async function startServer() {
     const productCollection = db.collection('Products');
     console.log('✅ Connected to MongoDB Atlas');
 
-    // SIGNUP
     app.post('/api/signup', async (req, res) => {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
