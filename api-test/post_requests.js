@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { expect } = require("chai");
 
-const BASE_URL = "http://localhost:80/api";
+const BASE_URL = "http://3.90.159.31:3000/api";
 
 describe("POST API REQUEST TESTS", () => {
   it("should create a new user successfully", async () => {

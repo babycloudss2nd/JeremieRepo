@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { expect } = require("chai");
 
-const BASE_URL = "http://localhost:80/api";
+const BASE_URL = "http://localhost:3000/api";
 
 describe("GET API REQUEST TESTS", () => {
 

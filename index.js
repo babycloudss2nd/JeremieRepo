@@ -26,7 +26,7 @@ const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
 
 // Start server
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => {
   console.log(`🚀 Server running at http://3.90.159.31:${port}`);
 });
