@@ -17,11 +17,12 @@ const client = new MongoClient(uri);
 async function startServer() {
   try {
     await client.connect();
-    const db = client.db('Security'); 
-    const userCollection = db.collection('Users'); 
+    const db = client.db('Security');
+    const userCollection = db.collection('Users');
     const productCollection = db.collection('Products');
     console.log('✅ Connected to MongoDB Atlas');
 
+    // SIGNUP
     app.post('/api/signup', async (req, res) => {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
@@ -45,6 +46,7 @@ async function startServer() {
       }
     });
 
+    // LOGIN
     app.post('/api/login', async (req, res) => {
       const { email, password } = req.body;
       if (!email || !password) {
@@ -66,6 +68,7 @@ async function startServer() {
       }
     });
 
+    // GET PRODUCTS
     app.get('/api/products', async (req, res) => {
       try {
         const products = await productCollection.find({}).toArray();
@@ -75,7 +78,8 @@ async function startServer() {
         res.status(500).json({ message: 'Failed to fetch products' });
       }
     });
-    
+
+    // ADD PRODUCT
     app.post('/api/products', async (req, res) => {
       try {
         const result = await productCollection.insertOne(req.body);
@@ -86,7 +90,11 @@ async function startServer() {
       }
     });
 
-app.listen(5000, '3.90.159.31', () => console.log("✅ Connected to MongoDB and Server running locally on http://0.0.0.0:5000"));
+    // FIXED LISTEN (THIS WAS THE PROBLEM)
+    app.listen(port, '0.0.0.0', () => {
+      console.log(`🚀 Server running on http://3.90.159.31:${port}`);
+    });
+
   } catch (err) {
     console.error('❌ MongoDB connection failed:', err);
     process.exit(1);
