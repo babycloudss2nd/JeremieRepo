@@ -22,6 +22,7 @@ async function startServer() {
     const productCollection = db.collection('Products');
     console.log('✅ Connected to MongoDB Atlas');
 
+    // SIGNUP
     app.post('/api/signup', async (req, res) => {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
@@ -45,7 +46,7 @@ async function startServer() {
       }
     });
 
-
+    // LOGIN
     app.post('/api/login', async (req, res) => {
       const { email, password } = req.body;
       if (!email || !password) {
@@ -53,13 +54,11 @@ async function startServer() {
       }
       try {
         const user = await userCollection.findOne({ email });
-        if (!user) {
-          return res.status(401).json({ message: 'Invalid email or password' });
-        }
+        if (!user) return res.status(401).json({ message: 'Invalid email or password' });
+
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-          return res.status(401).json({ message: 'Invalid email or password' });
-        }
+        if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
+
         res.status(200).json({ message: 'Login successful', userId: user._id });
       } catch (err) {
         console.error('Login error:', err);
@@ -89,9 +88,8 @@ async function startServer() {
       }
     });
 
-    // FIXED LISTEN (THIS WAS THE PROBLEM)
     app.listen(port, '0.0.0.0', () => {
-      console.log(`🚀 Server running on http://3.90.159.31:${port}`);
+      console.log(`🚀 Server running at http://3.90.159.31:${port}`);
     });
 
   } catch (err) {
