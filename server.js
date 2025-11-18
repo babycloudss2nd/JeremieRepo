@@ -45,6 +45,7 @@ async function startServer() {
       }
     });
 
+
     app.post('/api/login', async (req, res) => {
       const { email, password } = req.body;
       if (!email || !password) {

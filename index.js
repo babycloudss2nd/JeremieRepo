@@ -26,6 +26,6 @@ const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes); // ✅ Use /api to match frontend
 
 // Start server
-app.listen(5000, () => {
-  console.log("🚀 Server running at http://localhost:5000");
+app.listen(5000, "0.0.0.0", () => {
+  console.log("🚀 Server running at http://3.90.159.31:5000");
 });
